@@ -1,0 +1,80 @@
+{
+  "name": "AI Job Hunter - V1",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "49a9149e-4455-4c4e-9c22-35fc078c1397",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://api.lever.co/v0/postings/sfeir?mode=json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "3781ace5-b246-44a2-97ef-05ef088b84fd",
+      "name": "Fetch Lever Jobs"
+    },
+    {
+      "parameters": {
+        "jsCode": "const jobs = $input.all();\n\nreturn jobs.map(item => {\n  const job = item.json;\n\n  return {\n    json: {\n      source: \"lever\",\n      source_id: job.id,\n\n      title: job.text ?? null,\n      company: \"SFEIR\",\n\n      location: job.categories?.location ?? null,\n      team: job.categories?.team ?? null,\n      contract_type: job.categories?.commitment ?? null,\n\n      description: job.descriptionPlain ?? null,\n\n      job_url: job.hostedUrl ?? null,\n      apply_url: job.applyUrl ?? null,\n\n      collected_at: new Date().toISOString()\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "e4054fbe-9f54-4ea7-b782-fcafe909fcb0",
+      "name": "Normalize Lever Jobs"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Fetch Lever Jobs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Lever Jobs": {
+      "main": [
+        [
+          {
+            "node": "Normalize Lever Jobs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "3ffbe177-baa0-4977-84ae-249fd9837696",
+  "meta": {
+    "instanceId": "9cc713ef31b337777ffb925e336f66ec083431ffb47477f807d24e1356a880f1"
+  },
+  "nodeGroups": [],
+  "id": "c6K1joyum6qtfINX",
+  "tags": []
+}
