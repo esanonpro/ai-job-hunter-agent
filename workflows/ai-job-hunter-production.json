@@ -6,10 +6,10 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        80,
-        0
+        32,
+        400
       ],
-      "id": "49a9149e-4455-4c4e-9c22-35fc078c1397",
+      "id": "f6480066-36f2-448e-8216-25dc90232865",
       "name": "When clicking ‘Execute workflow’"
     },
     {
@@ -20,10 +20,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
-        448,
-        0
+        400,
+        400
       ],
-      "id": "3781ace5-b246-44a2-97ef-05ef088b84fd",
+      "id": "681fdbc4-439b-49a7-81e1-1358465554ea",
       "name": "Fetch Lever Jobs"
     },
     {
@@ -33,10 +33,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        672,
-        0
+        624,
+        400
       ],
-      "id": "e4054fbe-9f54-4ea7-b782-fcafe909fcb0",
+      "id": "867d6737-01a5-4767-9a4a-5c08ae2f40f0",
       "name": "Normalize Lever Jobs"
     },
     {
@@ -67,10 +67,10 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.3,
       "position": [
-        1280,
-        0
+        1456,
+        400
       ],
-      "id": "693fca3e-5826-4f8f-ab59-10bf212c195b",
+      "id": "8142cd92-43dd-4eaf-91b6-212cda718f8b",
       "name": "Filter Relevant Candidates"
     },
     {
@@ -80,10 +80,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1104,
-        0
+        1056,
+        400
       ],
-      "id": "b235667b-add3-44f4-8b1e-1453f9c28c14",
+      "id": "882ede8c-0890-49e3-839a-e5df397d8ba8",
       "name": "Pre-filter Jobs"
     },
     {
@@ -101,7 +101,7 @@
               "role": "model"
             },
             {
-              "content": "=Evaluate this job for the following candidate.\n\nCANDIDATE PROFILE\n\nSeniority:\nJunior / early-career Data & AI Engineer.\n\nTarget roles:\nAI Engineer, AI Automation Engineer, Agentic AI Engineer, GenAI Engineer,\nAI Solutions Engineer, AI Integration Engineer, Intelligent Automation Engineer,\nForward Deployed AI Engineer and similar roles involving AI-powered process automation.\n\nCore relevant skills:\n- Python, SQL\n- LangGraph\n- MCP (Model Context Protocol)\n- Gemini / Vertex AI\n- FastAPI\n- GCP\n- Docker\n- Data engineering and ETL/ELT\n- APIs and system integration\n- RAG concepts\n- Power Automate\n\nLanguages:\n- French: native / fluent\n- English: professional working proficiency\n\nRelevant experience:\n- Built an agentic financial analysis system combining an LLM-based fundamental\n  analysis component with deterministic technical analysis, decision logic and\n  risk management.\n- Used Gemini through Vertex AI and LangGraph.\n- Used MCP to standardize access to tools and external data sources.\n- Built data pipelines on GCP with Python, SQL, dbt and Airflow.\n- Deployed services using FastAPI, Docker and Cloud Run.\n\nThe candidate is junior. Internships and first professional experiences should\ncount as valid experience.\n\nJOB\n\nTitle:\n{{ $json.title }}\n\nCompany:\n{{ $json.company }}\n\nLocation:\n{{ $json.location }}\n\nContract:\n{{ $json.contract_type }}\n\nDescription:\n{{ $json.description }}\n\nTASK\n\nEvaluate:\n\n1. ai_automation_relevance:\nHow much the actual job responsibilities concern AI engineering, GenAI,\nAI agents or intelligent process/workflow automation.\n\n2. junior_compatibility:\nHow accessible the role is to a junior/early-career candidate.\nDo not automatically reject a role because it asks for some experience,\nbut penalize clearly senior, lead, staff or expert positions.\n\n3. candidate_fit:\nHow closely the candidate's demonstrated skills and experience match the\nactual responsibilities and required technologies.\n\n4. hidden_ai_automation_role:\ntrue when the title does not clearly advertise an AI/automation role but the\nactual responsibilities substantially involve AI agents, LLM applications\nor intelligent automation.\n\nReturn exactly this JSON structure:\n\n{\n  \"ai_automation_relevance\": 0,\n  \"junior_compatibility\": 0,\n  \"candidate_fit\": 0,\n  \"hidden_ai_automation_role\": false,\n  \"matched_skills\": [],\n  \"missing_skills\": [],\n  \"experience_required\": \"\",\n  \"reason\": \"\",\n  \"recommendation\": \"SKIP\"\n}\n\nScores must be integers from 0 to 100.\n\nrecommendation must be exactly one of:\n\"PRIORITY\", \"APPLY\", \"REVIEW\", \"SKIP\"."
+              "content": "=Evaluate this job for the following candidate.\n\n==================================================\nCANDIDATE PROFILE\n==================================================\n\nSeniority:\nJunior / early-career Data & AI Engineer.\n\nEducation:\nEngineering graduate from ENSAI in Data Science and Data Engineering.\n\nTarget roles:\n- AI Engineer\n- AI Automation Engineer\n- Agentic AI Engineer\n- GenAI Engineer\n- AI Solutions Engineer\n- AI Integration Engineer\n- Intelligent Automation Engineer\n- Forward Deployed AI Engineer\n- similar roles involving AI-powered process automation, LLM applications,\n  AI agents, integrations and intelligent workflows\n\nProgramming and software engineering:\n- Python\n- SQL\n- JavaScript\n- FastAPI\n- REST APIs\n- JSON\n- Git\n- GitHub\n- Docker\n\nAgentic AI and GenAI:\n- LLM application development\n- AI agent development\n- agentic workflows\n- LangGraph\n- MCP (Model Context Protocol)\n- Gemini / Vertex AI\n- RAG\n- FAISS\n- LLM/API integration\n\nAI automation and workflow orchestration:\n- n8n\n- multi-step automation workflows\n- REST API integrations\n- JSON-based integrations\n- OAuth-based integrations\n- scheduled workflows\n- deterministic filtering before LLM inference\n- sequential LLM processing\n- controlled LLM call limits\n- retry strategies\n- model fallback strategies\n- persistent deduplication of selected records\n\nCloud and data engineering:\n- GCP\n- Cloud Run\n- BigQuery\n- Cloud Composer / Airflow\n- dbt\n- Airbyte\n- ETL / ELT\n- PostgreSQL\n- CI/CD\n\nRelevant AI Engineering experience:\n- Built an agentic financial analysis system in Python.\n- Developed an LLM-based fundamental analysis agent using Gemini through\n  Vertex AI and orchestrated with LangGraph.\n- Used MCP to standardize access to tools and external data sources.\n- Combined the LLM agent with deterministic technical analysis, decision\n  logic and risk management.\n- Built and deployed services using FastAPI, Docker and GCP / Cloud Run.\n\nRelevant AI Automation project:\n- Designed, built and deployed an AI Job Hunter using n8n.\n- Integrated Lever and Greenhouse job APIs.\n- Normalized heterogeneous job data.\n- Implemented deterministic pre-filtering before LLM inference.\n- Integrated Gemini for semantic job analysis and scoring.\n- Implemented sequential LLM processing and controlled call limits.\n- Implemented retry and secondary-model fallback strategies.\n- Implemented persistent deduplication of selected opportunities.\n- Integrated Gmail notifications using OAuth.\n- Deployed the workflow with Docker on Railway.\n- Configured scheduled cloud execution.\n\nImportant candidate evidence rules:\n- n8n IS a demonstrated skill.\n- JavaScript IS a demonstrated skill.\n- LangGraph IS a demonstrated skill.\n- MCP IS a demonstrated skill.\n- Gemini / Vertex AI IS demonstrated.\n- REST API and JSON integration ARE demonstrated.\n- LLM agent development IS demonstrated.\n- RAG IS demonstrated.\n\nThe following are NOT currently demonstrated:\n- Dust\n- Claude API\n- LangChain\n- Kubernetes\n- AWS\n- Azure\n\nRelated experience may be considered transferable, but MUST NOT be reported\nas an exact demonstrated skill.\n\nFor example:\n- Gemini experience does not mean Claude API experience.\n- LangGraph experience does not mean LangChain experience.\n- Docker experience does not mean Kubernetes experience.\n\nLanguages:\n- French: native / fluent\n- English: professional working proficiency\n\n==================================================\nJOB\n==================================================\n\nTitle:\n{{ $json.title }}\n\nCompany:\n{{ $json.company }}\n\nLocation:\n{{ $json.location }}\n\nContract:\n{{ $json.contract_type }}\n\nDescription:\n{{ $json.description }}\n\n==================================================\nTASK\n==================================================\n\nEvaluate this job using the classification rules defined in the system\ninstructions.\n\nUse the candidate profile above as the source of truth for demonstrated\ncandidate skills.\n\nDo not infer candidate skills from the job description.\n\nDo not treat transferable skills as demonstrated exact matches.\n\nReturn ONLY valid JSON using the exact output structure defined in the system\ninstructions."
             }
           ]
         },
@@ -111,17 +111,20 @@
       "type": "@n8n/n8n-nodes-langchain.googleGemini",
       "typeVersion": 1.2,
       "position": [
-        2240,
-        0
+        2416,
+        400
       ],
-      "id": "c4c6b7a3-a510-4d90-9031-b43b0f9dbd38",
+      "id": "8b1d4755-7ded-4211-a25d-20477f149eb7",
       "name": "Gemini - Analyze Job",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googlePalmApi": {
-          "id": "BR5TrE9PW7PovUwZ",
+          "id": "5rrm3msUMOBba3AN",
           "name": "Google Gemini(PaLM) Api account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -131,10 +134,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2608,
-        0
+        3248,
+        32
       ],
-      "id": "8e9381f4-b7b7-42f0-84dc-4367727c837c",
+      "id": "54c6f54c-ceb8-4f76-b860-d5eb2ed97fbe",
       "name": "Parse Gemini JSON"
     },
     {
@@ -142,10 +145,10 @@
         "operation": "rowNotExists",
         "dataTableId": {
           "__rl": true,
-          "value": "tzH9ssd6quOmYUhq",
+          "value": "hgzzLfPAf3g01Vgj",
           "mode": "list",
           "cachedResultName": "ai_job_tracker",
-          "cachedResultUrl": "/projects/T6FvLvHKfQmK9ok3/datatables/tzH9ssd6quOmYUhq"
+          "cachedResultUrl": "/projects/hXSNBrU68fOYb94u/datatables/hgzzLfPAf3g01Vgj"
         },
         "filters": {
           "conditions": [
@@ -159,20 +162,20 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        1536,
-        0
+        1712,
+        400
       ],
-      "id": "5da7edd9-97c0-4a72-8bf4-549defd78084",
+      "id": "6679248a-1bdc-41a4-bd3b-5aab04e6237d",
       "name": "Check New Job"
     },
     {
       "parameters": {
         "dataTableId": {
           "__rl": true,
-          "value": "tzH9ssd6quOmYUhq",
+          "value": "hgzzLfPAf3g01Vgj",
           "mode": "list",
           "cachedResultName": "ai_job_tracker",
-          "cachedResultUrl": "/projects/T6FvLvHKfQmK9ok3/datatables/tzH9ssd6quOmYUhq"
+          "cachedResultUrl": "/projects/hXSNBrU68fOYb94u/datatables/hgzzLfPAf3g01Vgj"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -332,10 +335,10 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        3200,
-        -384
+        3696,
+        16
       ],
-      "id": "e355bd3e-2530-4bfe-b69c-0ac8f24a592c",
+      "id": "54ff60ab-474d-42e7-bc32-4a182ca47f62",
       "name": "Insert New Job"
     },
     {
@@ -348,15 +351,15 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        3424,
-        -384
+        3904,
+        16
       ],
-      "id": "1daf06f5-4332-45ce-add5-c5831ce044c2",
+      "id": "7f754443-b752-4222-88de-8d86fab4692f",
       "name": "Send Job Alert",
       "webhookId": "8fe064d4-6f74-42ba-b9d7-61186d5a28a4",
       "credentials": {
         "gmailOAuth2": {
-          "id": "wkN26uNkapfg1J5b",
+          "id": "UvuI2crRvyDn6rDc",
           "name": "Gmail account"
         }
       }
@@ -368,10 +371,10 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        2016,
-        0
+        2192,
+        400
       ],
-      "id": "dd4c68aa-75f1-4974-af8b-18b9af7a36c8",
+      "id": "71588f52-9b03-4e0b-ab91-45f9c871e001",
       "name": "Loop Over Items"
     },
     {
@@ -381,10 +384,10 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        1744,
-        0
+        1920,
+        400
       ],
-      "id": "e08c694f-1419-4234-a642-117dd5ccc355",
+      "id": "ffbf7113-717c-479d-9cfc-8c67e8cf07c0",
       "name": "Limit Gemini Calls"
     },
     {
@@ -392,10 +395,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        3808,
-        32
+        4064,
+        432
       ],
-      "id": "a9e36110-a60b-47d8-8e94-35d5e5d261f2",
+      "id": "fbbd5de4-490a-4944-a6fb-440b97674f34",
       "name": "Wait - Selected",
       "webhookId": "e78e22ca-f947-45cb-ac7d-c5f3715c5948"
     },
@@ -427,10 +430,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2816,
-        -208
+        3440,
+        32
       ],
-      "id": "65d20e3e-2c9a-4581-86c8-4fe9b9dd0517",
+      "id": "2cbca69e-aef5-47db-b1be-1d31981658e4",
       "name": "Route Job Decision"
     },
     {
@@ -438,10 +441,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        3408,
-        -16
+        3696,
+        416
       ],
-      "id": "0625fbeb-95c6-4c95-ad96-3532efe2a589",
+      "id": "c7e96776-0706-4382-9bf4-bbe0206d65e3",
       "name": "Wait - Skipped",
       "webhookId": "17b7f783-edc8-4132-96e3-ee069a9e7a3d"
     },
@@ -453,10 +456,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.5,
       "position": [
-        416,
-        -400
+        368,
+        0
       ],
-      "id": "5e1cc5d4-c4bc-427c-8ecb-61d1344de538",
+      "id": "a606a46b-afed-463b-b9c0-7c06fa2ea20d",
       "name": "Fetch Greenhouse Jobs"
     },
     {
@@ -466,10 +469,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        640,
-        -400
+        592,
+        0
       ],
-      "id": "d258bd17-a7b8-422d-b533-c9688d064f00",
+      "id": "51923721-6c8c-434d-8401-e994aeb77e82",
       "name": "Normalize Greenhouse Jobs"
     },
     {
@@ -477,11 +480,70 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        832,
-        -192
+        784,
+        208
       ],
-      "id": "a50d7974-723d-483b-b08e-d92490e91f0f",
+      "id": "d6034a1f-4035-42a2-9557-8ee0465d52af",
       "name": "Merge Job Sources"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        144
+      ],
+      "id": "ac1416f9-2fc1-4af6-bc75-12a8aaf87ca3",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.5-flash-lite",
+          "mode": "list",
+          "cachedResultName": "Gemini 3.5 Flash Lite"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a job-matching classifier specialized in AI engineering, AI automation,\nagentic AI, GenAI and intelligent workflow automation roles.\n\nYour goal is to determine whether a job is genuinely relevant to a junior\ncandidate targeting AI engineering and AI-powered automation opportunities.\n\nYou must evaluate the job primarily from its ACTUAL RESPONSIBILITIES,\nREQUIREMENTS and TECHNOLOGIES, not from its title alone and not from the\ncompany's general positioning.\n\nA role can be highly relevant even if its title does not explicitly contain\n\"AI\", \"LLM\", \"Agent\", \"GenAI\" or \"Automation\".\n\nExamples of potentially relevant hidden roles include:\n- Solutions Engineer\n- Integration Engineer\n- Automation Engineer\n- Tech Ops Engineer\n- Business Process Engineer\n- Forward Deployed Engineer\n- Backend Engineer\n- Data Engineer\n- Developer\n- Consultant\n- Architect\n\nThese roles are relevant ONLY when their actual responsibilities substantially\ninvolve building, integrating, deploying, orchestrating or operating AI agents,\nLLM applications, intelligent workflows, AI-powered automation or related\nsystems.\n\n\n==================================================\n1. CORE EVIDENCE RULE\n==================================================\n\nYou MUST distinguish between:\n\nA) technologies, responsibilities and requirements that belong to the JOB itself\n\nB) technologies, products, strategy, culture, marketing statements or general\ntechnical positioning that belong to the COMPANY\n\nONLY category A may be used to determine:\n- ai_automation_relevance\n- hidden_ai_automation_role\n- candidate_fit\n- junior_compatibility\n\nCompany-wide statements such as:\n- \"AI-native company\"\n- \"we use AI\"\n- \"agentic AI\"\n- \"GenAI culture\"\n- \"AI-powered company\"\n- AI products developed by other teams\n- general AI transformation initiatives\n- partnerships with AI vendors\n- internal AI programs\n\nMUST NOT increase the AI relevance score unless the candidate will actually\nwork on AI/LLM/automation systems as part of THIS specific job.\n\nSimilarly, simply using productivity or coding tools such as:\n- GitHub Copilot\n- Claude Code\n- ChatGPT\n- Gemini\n- Cursor\nor similar tools DOES NOT make a position an AI engineering or AI automation\nrole.\n\nNever use general information about the employer to justify a score.\n\n\n==================================================\n2. AI AUTOMATION RELEVANCE\n==================================================\n\nai_automation_relevance measures how strongly the ACTUAL JOB RESPONSIBILITIES\ninvolve direct work on:\n\n- LLM applications\n- AI agents\n- agentic workflows\n- GenAI systems\n- RAG systems\n- intelligent automation\n- workflow automation involving AI\n- LLM/API integrations\n- AI orchestration\n- AI-powered business process automation\n- deployment or operation of AI systems\n- evaluation or monitoring of AI systems\n- AI application engineering\n\nUse an integer score from 0 to 100.\n\nGeneral interpretation:\n\n0-20:\nEssentially unrelated to AI engineering or intelligent automation.\n\n21-40:\nAI-adjacent or occasional AI exposure, but AI is not an important part of the\nactual responsibilities.\n\n41-60:\nSome meaningful AI-related responsibilities exist, but direct AI/automation\nengineering is not the primary purpose of the position.\n\n61-80:\nAI/automation is an important and recurring part of the actual job.\n\n81-100:\nAI engineering, agentic AI, GenAI or intelligent automation is central to the\nposition.\n\n\n==================================================\n3. AI-READY IS NOT AI ENGINEERING\n==================================================\n\nBuilding infrastructure, data platforms, pipelines or architectures that may\nlater be used by AI systems does NOT by itself make a job an AI engineering\nor AI automation role.\n\nStatements such as:\n- \"AI-ready architecture\"\n- \"enable AI use cases\"\n- \"prepare data for AI\"\n- \"data is the foundation of AI\"\n- \"support AI workloads\"\n- \"architecture for future AI applications\"\n\nindicate AI adjacency, but MUST NOT produce a high ai_automation_relevance\nscore unless the actual responsibilities include direct work on AI/LLM systems.\n\nA primarily Data Engineering role involving:\n- pipelines\n- ETL/ELT\n- Spark\n- Kafka\n- ingestion\n- data modeling\n- governance\n- databases\n- data platforms\n- data quality\n\nshould normally remain below 60 ai_automation_relevance when direct AI/LLM\nengineering responsibilities are absent.\n\nSimilarly, a Cloud or DevOps role involving:\n- CI/CD\n- Kubernetes\n- Terraform\n- Ansible\n- observability\n- infrastructure\n- cloud platforms\n\nshould normally remain below 60 ai_automation_relevance when its purpose is\nmainly infrastructure rather than direct AI engineering.\n\nSuch roles may still have a very high candidate_fit score.\n\nA high candidate_fit score does NOT imply high ai_automation_relevance.\n\nThese dimensions MUST be evaluated independently.\n\n\n==================================================\n4. HIDDEN AI AUTOMATION ROLE\n==================================================\n\nhidden_ai_automation_role must be true ONLY when BOTH conditions are satisfied:\n\n1. The job title does NOT clearly advertise an AI, GenAI, LLM, Machine Learning\nor automation role.\n\nAND\n\n2. The ACTUAL RESPONSIBILITIES substantially involve directly building,\nintegrating, deploying, orchestrating or operating:\n- AI agents\n- LLM applications\n- GenAI systems\n- RAG systems\n- intelligent workflows\n- AI-powered automation\n- AI integrations\n\nExamples:\n\nA \"Solutions Engineer\" who builds LLM integrations and agentic workflows:\nhidden_ai_automation_role = true\n\nA \"Backend Engineer\" responsible for implementing RAG services and LLM APIs:\nhidden_ai_automation_role = true\n\nA \"Data Engineer\" building Spark/Kafka pipelines that may later feed AI systems:\nhidden_ai_automation_role = false\n\nA \"Cloud Engineer\" maintaining Kubernetes infrastructure for a company that\nalso develops AI products:\nhidden_ai_automation_role = false\n\nA \"GenAI Engineer\":\nhidden_ai_automation_role = false because AI is already explicit in the title.\n\nA \"Machine Learning Engineer\":\nhidden_ai_automation_role = false because the AI/ML nature of the role is\nalready explicit in the title.\n\nCompany marketing MUST NEVER be sufficient to set\nhidden_ai_automation_role = true.\n\n\n==================================================\n5. JUNIOR COMPATIBILITY\n==================================================\n\njunior_compatibility measures how realistically accessible the position is to\na junior or early-career candidate.\n\nUse an integer score from 0 to 100.\n\nEvaluate ONLY evidence contained in the job description.\n\nDo not automatically reject a position because some experience is requested.\n\nDistinguish between:\n- mandatory requirements\n- preferred requirements\n- nice-to-have requirements\n- generic recruiter wish lists\n\nInternships, apprenticeships, academic projects and first professional\nexperiences can count as relevant junior experience.\n\nA requirement such as 1-3 years may still be compatible with a strong junior\ncandidate.\n\nStrongly penalize positions that clearly require:\n- Senior\n- Lead\n- Staff\n- Principal\n- Expert\n- management responsibilities\n- ownership expected from a highly experienced engineer\n- extensive professional experience\n\nDo NOT infer that a company:\n- supports juniors\n- provides mentorship\n- has graduate programs\n- is junior-friendly\n- provides special career opportunities\n\nunless the advertisement explicitly provides evidence for that conclusion.\n\nTraining programs or general company learning culture do not automatically mean\nthat the specific vacancy is junior-friendly.\n\n\n==================================================\n6. CANDIDATE FIT\n==================================================\n\ncandidate_fit measures how closely the candidate's DEMONSTRATED skills and\nexperience match the ACTUAL requirements and responsibilities of the job.\n\nUse an integer score from 0 to 100.\n\nDo not assume that the candidate knows a technology unless it appears in the\ncandidate profile.\n\nTransferable skills may influence candidate_fit, but they MUST NOT be treated\nas exact matches.\n\nExamples:\n\nDocker experience does NOT automatically mean Kubernetes expertise.\n\nGCP experience does NOT automatically mean AWS or Azure expertise.\n\nFastAPI experience does NOT automatically mean Django or Flask expertise.\n\nLangGraph experience does NOT mean LangChain experience.\n\nExperience with one LLM provider does not automatically mean demonstrated\nexperience with another provider.\n\nHowever, related experience can be considered transferable when assessing the\noverall candidate_fit score.\n\nFor example, demonstrated LangGraph experience may indicate transferable\nknowledge of agent orchestration even if another orchestration framework is\nused by the employer.\n\nDo not confuse:\n\"could probably learn this skill\"\nwith\n\"already has this skill\".\n\n\n==================================================\n7. MATCHED SKILLS\n==================================================\n\nmatched_skills must contain ONLY skills or capabilities that satisfy BOTH:\n\n1. They are relevant to the actual job.\n\nAND\n\n2. They are explicitly demonstrated in the candidate profile.\n\nDo NOT list a related technology as an exact skill match.\n\nExamples:\n\nCandidate has LangGraph, job requires LangChain:\nLangChain MUST NOT appear in matched_skills.\n\nCandidate has Docker, job requires Kubernetes:\nKubernetes MUST NOT appear in matched_skills.\n\nCandidate has GCP, job requires AWS:\nAWS MUST NOT appear in matched_skills.\n\nCandidate has Python and job requires Python:\nPython may appear in matched_skills.\n\n\n==================================================\n8. MISSING SKILLS\n==================================================\n\nmissing_skills must contain important job requirements that are not demonstrated\nin the candidate profile.\n\nOnly include skills that meaningfully affect the candidate's suitability.\n\nDo not include technologies that merely appear in company marketing,\npartner lists or unrelated parts of the advertisement.\n\n\n==================================================\n9. EXPERIENCE REQUIRED\n==================================================\n\nexperience_required must summarize the ACTUAL seniority or experience\nexpectation stated in the advertisement.\n\nIf a number of years is explicitly stated, report it accurately.\n\nIf no explicit experience requirement is provided, return:\n\n\"Not explicitly specified\"\n\nDo NOT invent years of experience.\n\nTechnical tests, interviews or coding assessments are NOT experience\nrequirements.\n\nFor example, if an advertisement mentions technical assessments but no years\nof experience, experience_required must still be:\n\n\"Not explicitly specified\"\n\n\n==================================================\n10. RECOMMENDATION\n==================================================\n\nUse exactly one of these recommendations:\n\nPRIORITY\nThe position is strongly related to the candidate's AI/automation target,\nthe candidate has a strong relevant fit, and the seniority level is\nrealistically accessible.\n\nAPPLY\nThe position is meaningfully related to the candidate's target OR represents\na strategically relevant adjacent opportunity, and the candidate has enough\nrelevant skills to justify an application.\n\nREVIEW\nThe position is ambiguous, partially relevant, or requires human judgment\nbefore deciding whether to apply.\n\nSKIP\nThe actual role is not sufficiently related to the candidate's target,\nOR the position is clearly too senior,\nOR the candidate fit is far too weak.\n\nA company working extensively with AI is NOT sufficient reason to recommend\napplying to an unrelated position.\n\n\n==================================================\n11. REASON FIELD\n==================================================\n\nThe reason field must explain the decision using ONLY:\n\n- evidence from the job description\n- evidence from the candidate profile\n- reasonable comparisons between these two sources\n\nDo NOT introduce external knowledge about the company.\n\nDo NOT use statements such as:\n- \"the company is known for...\"\n- \"the company is AI-focused...\"\n- \"the company supports juniors...\"\n- \"the company provides strong mentorship...\"\n\nunless those facts are explicitly relevant and stated in the job description.\n\nEven when such company-level information appears in the advertisement, it must\nnot be used as evidence that the actual JOB is AI-related.\n\nThe reason should primarily explain:\n- what the candidate would actually do\n- why those responsibilities are or are not AI/automation related\n- how the candidate's demonstrated skills match\n- whether the seniority is accessible\n\n\n==================================================\n12. GENERAL CLASSIFICATION RULES\n==================================================\n\nBe conservative and evidence-based.\n\nDo not invent:\n- responsibilities\n- technologies\n- years of experience\n- candidate skills\n- seniority requirements\n- company characteristics\n\nDo not reward keyword frequency.\n\nA job description containing many occurrences of:\n\"AI\",\n\"agentic\",\n\"LLM\",\n\"GenAI\"\nor similar terms is NOT necessarily an AI role.\n\nAnalyze what the person hired for THIS POSITION will actually do.\n\nThe semantic meaning of the responsibilities is more important than keyword\nmatching.\n\nEvaluate these dimensions independently:\n\n- ai_automation_relevance\n- junior_compatibility\n- candidate_fit\n- hidden_ai_automation_role\n\nFor example, it is perfectly valid to produce:\n\nai_automation_relevance = 35\ncandidate_fit = 90\n\nwhen the candidate strongly matches a Data Engineering role that is not\nactually an AI automation role.\n\nIt is also valid to produce:\n\nai_automation_relevance = 95\ncandidate_fit = 80\njunior_compatibility = 15\n\nfor a highly relevant AI position that is clearly too senior.\n\n\n==================================================\n13. OUTPUT FORMAT\n==================================================\n\nReturn ONLY valid JSON.\n\nDo not return Markdown.\n\nDo not wrap the JSON in ```json or any other code block.\n\nDo not include any explanation before or after the JSON.\n\nThe output must follow exactly this structure:\n\n{\n  \"ai_automation_relevance\": 0,\n  \"junior_compatibility\": 0,\n  \"candidate_fit\": 0,\n  \"hidden_ai_automation_role\": false,\n  \"matched_skills\": [],\n  \"missing_skills\": [],\n  \"experience_required\": \"\",\n  \"reason\": \"\",\n  \"recommendation\": \"SKIP\"\n}\n\nAll three scores must be integers between 0 and 100.\n\nhidden_ai_automation_role must be a boolean.\n\nmatched_skills must be an array of strings.\n\nmissing_skills must be an array of strings.\n\nrecommendation must be exactly one of:\n\"PRIORITY\", \"APPLY\", \"REVIEW\", \"SKIP\".",
+              "role": "model"
+            },
+            {
+              "content": "=Evaluate this job for the following candidate.\n\n==================================================\nCANDIDATE PROFILE\n==================================================\n\nSeniority:\nJunior / early-career Data & AI Engineer.\n\nEducation:\nEngineering graduate from ENSAI in Data Science and Data Engineering.\n\nTarget roles:\n- AI Engineer\n- AI Automation Engineer\n- Agentic AI Engineer\n- GenAI Engineer\n- AI Solutions Engineer\n- AI Integration Engineer\n- Intelligent Automation Engineer\n- Forward Deployed AI Engineer\n- similar roles involving AI-powered process automation, LLM applications,\n  AI agents, integrations and intelligent workflows\n\nProgramming and software engineering:\n- Python\n- SQL\n- JavaScript\n- FastAPI\n- REST APIs\n- JSON\n- Git\n- GitHub\n- Docker\n\nAgentic AI and GenAI:\n- LLM application development\n- AI agent development\n- agentic workflows\n- LangGraph\n- MCP (Model Context Protocol)\n- Gemini / Vertex AI\n- RAG\n- FAISS\n- LLM/API integration\n\nAI automation and workflow orchestration:\n- n8n\n- multi-step automation workflows\n- REST API integrations\n- JSON-based integrations\n- OAuth-based integrations\n- scheduled workflows\n- deterministic filtering before LLM inference\n- sequential LLM processing\n- controlled LLM call limits\n- retry strategies\n- model fallback strategies\n- persistent deduplication of selected records\n\nCloud and data engineering:\n- GCP\n- Cloud Run\n- BigQuery\n- Cloud Composer / Airflow\n- dbt\n- Airbyte\n- ETL / ELT\n- PostgreSQL\n- CI/CD\n\nRelevant AI Engineering experience:\n- Built an agentic financial analysis system in Python.\n- Developed an LLM-based fundamental analysis agent using Gemini through\n  Vertex AI and orchestrated with LangGraph.\n- Used MCP to standardize access to tools and external data sources.\n- Combined the LLM agent with deterministic technical analysis, decision\n  logic and risk management.\n- Built and deployed services using FastAPI, Docker and GCP / Cloud Run.\n\nRelevant AI Automation project:\n- Designed, built and deployed an AI Job Hunter using n8n.\n- Integrated Lever and Greenhouse job APIs.\n- Normalized heterogeneous job data.\n- Implemented deterministic pre-filtering before LLM inference.\n- Integrated Gemini for semantic job analysis and scoring.\n- Implemented sequential LLM processing and controlled call limits.\n- Implemented retry and secondary-model fallback strategies.\n- Implemented persistent deduplication of selected opportunities.\n- Integrated Gmail notifications using OAuth.\n- Deployed the workflow with Docker on Railway.\n- Configured scheduled cloud execution.\n\nImportant candidate evidence rules:\n- n8n IS a demonstrated skill.\n- JavaScript IS a demonstrated skill.\n- LangGraph IS a demonstrated skill.\n- MCP IS a demonstrated skill.\n- Gemini / Vertex AI IS demonstrated.\n- REST API and JSON integration ARE demonstrated.\n- LLM agent development IS demonstrated.\n- RAG IS demonstrated.\n\nThe following are NOT currently demonstrated:\n- Dust\n- Claude API\n- LangChain\n- Kubernetes\n- AWS\n- Azure\n\nRelated experience may be considered transferable, but MUST NOT be reported\nas an exact demonstrated skill.\n\nFor example:\n- Gemini experience does not mean Claude API experience.\n- LangGraph experience does not mean LangChain experience.\n- Docker experience does not mean Kubernetes experience.\n\nLanguages:\n- French: native / fluent\n- English: professional working proficiency\n\n==================================================\nJOB\n==================================================\n\nTitle:\n{{ $json.title }}\n\nCompany:\n{{ $json.company }}\n\nLocation:\n{{ $json.location }}\n\nContract:\n{{ $json.contract_type }}\n\nDescription:\n{{ $json.description }}\n\n==================================================\nTASK\n==================================================\n\nEvaluate this job using the classification rules defined in the system\ninstructions.\n\nUse the candidate profile above as the source of truth for demonstrated\ncandidate skills.\n\nDo not infer candidate skills from the job description.\n\nDo not treat transferable skills as demonstrated exact matches.\n\nReturn ONLY valid JSON using the exact output structure defined in the system\ninstructions."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        2768,
+        416
+      ],
+      "id": "665093ba-d56a-4e8d-84be-9ecdb5657e81",
+      "name": "Gemini - Fallback",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "alwaysOutputData": false,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "5rrm3msUMOBba3AN",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -551,6 +613,13 @@
         [
           {
             "node": "Parse Gemini JSON",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gemini - Fallback",
             "type": "main",
             "index": 0
           }
@@ -696,19 +765,51 @@
           }
         ]
       ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch Greenhouse Jobs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Lever Jobs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini - Fallback": {
+      "main": [
+        [
+          {
+            "node": "Parse Gemini JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
-    "binaryMode": "separate"
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "timezone": "Europe/Paris",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": -1,
+    "availableInMCP": false
   },
-  "versionId": "afc304fd-672e-4ad6-bc8f-4fbe83729424",
+  "versionId": "fca5d6c1-867c-4232-ae7e-2eb6e5404e13",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "9cc713ef31b337777ffb925e336f66ec083431ffb47477f807d24e1356a880f1"
+    "instanceId": "1d82337e2604b60342a73e040c9ed137e86b424571616f36c0c56ca5764a9a46"
   },
   "nodeGroups": [],
-  "id": "c6K1joyum6qtfINX",
+  "id": "Ztj8K869poo3jqgP",
   "tags": []
 }
