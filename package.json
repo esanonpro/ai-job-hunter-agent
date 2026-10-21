@@ -1,0 +1,18 @@
+{
+  "name": "ai-job-hunter-agent",
+  "version": "1.0.0",
+  "description": "Agentic AI workflow for discovering, analyzing and ranking junior AI automation opportunities.",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esanonpro/ai-job-hunter-agent.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^5.0.5"
+  }
+}
