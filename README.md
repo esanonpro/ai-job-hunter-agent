@@ -51,6 +51,8 @@ Collect → Normalize → Pre-filter → Deduplicate → Analyze → Rank → No
 - Scheduled cloud execution
 - Persistent workflow deployment on Railway
 - Manual execution for testing and debugging
+- Automated regression testing for critical deterministic logic
+- GitHub Actions continuous integration
 
 ---
 
@@ -459,6 +461,8 @@ flowchart TD
 | Job sources | Lever API, Greenhouse API |
 | Persistence | n8n Data Tables / PostgreSQL-backed deployment |
 | Notifications | Gmail OAuth |
+| Testing | Vitest |
+| Continuous integration | GitHub Actions |
 | Deployment | Railway |
 | Containerization | Docker |
 | Version control | Git / GitHub |
@@ -490,7 +494,7 @@ The workflow timezone is explicitly configured as:
 Europe/Paris
 ```
 
-The production V1 schedule runs automatically at:
+The production schedule runs automatically at:
 
 ```text
 08:00 Europe/Paris
@@ -517,18 +521,105 @@ The exported workflow contains credential references required by n8n, but not th
 
 ---
 
+## 🧪 Testing & quality strategy
+
+The production V1 was validated through manual end-to-end testing before release.
+
+These validation runs covered the main production path:
+
+```text
+Job collection
+      ↓
+Normalization
+      ↓
+Deterministic pre-filter
+      ↓
+Deduplication
+      ↓
+Gemini analysis
+      ↓
+Structured JSON parsing
+      ↓
+Decision routing
+      ↓
+Persistence
+      ↓
+Email notification
+```
+
+After stabilizing the first production version, an automated regression testing layer was introduced to make future changes safer.
+
+### Automated testing
+
+Critical deterministic logic is extracted into testable JavaScript modules and covered with **Vitest**.
+
+The automated test suite covers:
+
+- deterministic job pre-filtering
+- seniority and geographic filtering
+- hidden-AI candidate detection
+- recommendation and notification routing
+- structured analysis contract validation
+- production workflow structure and consistency
+
+The tests can be executed locally with:
+
+```bash
+npm test
+```
+
+**GitHub Actions** runs the automated test suite on repository changes, providing a CI safety layer before future versions are integrated.
+
+### LLM evaluation
+
+Deterministic tests cannot fully validate probabilistic LLM behavior.
+
+A regression evaluation strategy is therefore being developed around representative job opportunities and expected behaviors.
+
+The planned evaluation layer will cover cases such as:
+
+- explicit junior AI roles
+- senior AI roles
+- traditional data engineering roles
+- hidden AI opportunities
+- non-AI software roles
+- misleading company-level AI marketing
+- automation engineering roles
+- regression cases based on real target positions
+
+This evaluation layer is still under development and is **not currently part of the production workflow**.
+
+The objective is to eventually evaluate prompt and model changes against the real n8n-based analysis pipeline before production releases.
+
+> The current production workflow remains intentionally stable while the quality and regression-testing strategy is expanded.
+
+---
+
 ## ⚙️ Running locally
 
 ### Requirements
 
 - Docker
 - Docker Compose
+- Node.js and npm for automated tests
 
 Clone the repository:
 
 ```bash
 git clone <repository-url>
 cd ai-job-hunter-agent
+```
+
+Install test dependencies:
+
+```bash
+npm ci
+```
+
+Run the automated tests:
+
+```bash
+npm test
 ```
 
 Start n8n:
@@ -565,17 +656,35 @@ before running the complete workflow.
 ```text
 ai-job-hunter-agent/
 │
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── src/
+│   ├── normalize_lever_jobs.js
+│   ├── prefilter.js
+│   ├── routing.js
+│   └── validation.js
+│
+├── tests/
+│   ├── prefilter.test.js
+│   ├── routing.test.js
+│   ├── validation.test.js
+│   └── workflow-consistency.test.js
+│
 ├── workflows/
 │   ├── v1-lever-collector.json
 │   └── ai-job-hunter-production.json
 │
-├── src/
-│   └── normalize_lever_jobs.js
-│
 ├── docker-compose.yml
+├── package.json
+├── package-lock.json
 ├── README.md
+├── LICENSE
 └── .gitignore
 ```
+
+The repository intentionally separates deterministic logic from the n8n workflow export so that critical rules can be tested independently.
 
 ---
 
@@ -600,22 +709,20 @@ These limitations define the next engineering iterations.
 
 ## 🗺️ Roadmap
 
-### V1.1 — Analysis tracking & faster discovery
+### Current — Quality & stabilization
+
+- Expand automated regression coverage
+- Maintain GitHub Actions CI
+- Define a representative LLM regression evaluation strategy
+- Keep the current production workflow stable while the quality layer matures
+
+### V1.1 — Analysis tracking & backlog processing
 
 - Persist every Gemini-analyzed opportunity
 - Prevent `SKIP` and `REVIEW` jobs from consuming repeated LLM calls
-- Process the backlog across multiple executions
-- Run discovery several times per day
+- Ensure the analysis backlog progresses across scheduled executions
+- Revisit the per-run Gemini processing limit
 - Improve control over API quota consumption
-
-Planned schedule:
-
-```text
-07:00
-10:00
-13:00
-Europe/Paris
-```
 
 ### V1.2 — Source expansion
 
@@ -639,6 +746,7 @@ Europe/Paris
 
 Potential future extensions include:
 
+- controlled deployment automation
 - application tracking
 - CV-to-job matching
 - job-specific CV recommendations
@@ -649,24 +757,30 @@ Potential future extensions include:
 
 ## 🧪 Production status
 
-**Current release:** `v1.0.0`
+The current production workflow is **stable and deployed**.
 
 ```text
-Multi-source collection       ✅
-Job normalization             ✅
-Deterministic pre-filter      ✅
-Persistent selected-job dedup ✅
-Gemini semantic analysis      ✅
-Candidate-fit scoring         ✅
-Hidden AI role detection      ✅
-Recommendation routing        ✅
-Gemini retries                ✅
-Gemini fallback configured    ✅
-Gmail alerts                  ✅
-Railway deployment            ✅
-Scheduled execution           ✅
-Git versioning                ✅
+Multi-source collection          ✅
+Job normalization                ✅
+Deterministic pre-filter         ✅
+Persistent selected-job dedup    ✅
+Gemini semantic analysis         ✅
+Candidate-fit scoring            ✅
+Hidden AI role detection         ✅
+Recommendation routing           ✅
+Gemini retries                   ✅
+Gemini fallback configured       ✅
+Gmail alerts                     ✅
+Railway deployment               ✅
+Scheduled execution              ✅
+Git versioning                   ✅
+Automated deterministic tests    ✅
+GitHub Actions CI                ✅
+LLM regression evaluation        🚧
+Persistent all-job tracking      🚧
 ```
+
+The production workflow remains intentionally stable while the next quality and reliability improvements are developed separately.
 
 ---
 
